@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/theme-toggle";
 import {
   Card,
   CardContent,
@@ -21,14 +20,11 @@ import {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background py-12">
+    <div className="bg-background py-12">
       <div className="container mx-auto max-w-5xl px-4">
 
         {/* 헤더 섹션 */}
-        <section className="relative mb-12 text-center">
-          <div className="absolute right-0 top-0">
-            <ThemeToggle />
-          </div>
+        <section className="mb-12 text-center">
           <div className="mb-4 flex items-center justify-center gap-2">
             <Rocket className="h-8 w-8 text-primary" />
             <h1 className="text-4xl font-bold tracking-tight">
@@ -227,6 +223,6 @@ export default function Home() {
         </section>
 
       </div>
-    </main>
+    </div>
   );
 }
