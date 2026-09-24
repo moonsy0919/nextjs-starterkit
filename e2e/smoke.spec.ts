@@ -22,3 +22,23 @@ test("테마 토글이 다크 모드를 켜고 끈다", async ({ page }) => {
   await page.getByRole("button", { name: "테마 전환" }).click();
   await expect(html).not.toHaveClass(/dark/);
 });
+
+test("존재하지 않는 경로는 404 페이지를 보여준다", async ({ page }) => {
+  const response = await page.goto("/does-not-exist");
+  expect(response?.status()).toBe(404);
+  await expect(
+    page.getByRole("heading", { name: "페이지를 찾을 수 없습니다" }),
+  ).toBeVisible();
+  await page.getByRole("link", { name: "홈으로 돌아가기" }).click();
+  await expect(page).toHaveURL(/\/$/);
+});
+
+test("robots.txt와 sitemap.xml을 제공한다", async ({ request }) => {
+  const robots = await request.get("/robots.txt");
+  expect(robots.ok()).toBe(true);
+  expect(await robots.text()).toContain("Sitemap:");
+
+  const sitemap = await request.get("/sitemap.xml");
+  expect(sitemap.ok()).toBe(true);
+  expect(await sitemap.text()).toContain("/about");
+});

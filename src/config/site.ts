@@ -6,6 +6,8 @@ import pkg from "../../package.json";
 export const siteConfig = {
   name: "Next.js Starter Kit",
   description: "Next.js, TypeScript, TailwindCSS v4, shadcn/ui 기반의 스타터킷",
+  /** 배포 주소. 메타데이터, sitemap, robots에서 사용하며 .env.local의 NEXT_PUBLIC_SITE_URL로 지정한다. */
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   /** package.json의 version을 그대로 사용한다. */
   version: `v${pkg.version}`,
   /** 저장소 주소. 비워두면 GitHub 링크가 화면에서 숨겨진다. */
