@@ -45,9 +45,10 @@ E2E 테스트를 처음 실행하기 전에 `npx playwright install chromium`으
 
 ```
 src/
-├── app/            # App Router (layout, page, globals.css)
-├── components/     # 공통 컴포넌트 (header, footer, theme-*)
-│   └── ui/         # shadcn/ui 컴포넌트
+├── app/            # App Router (layout, page, 오류·404·로딩, robots, sitemap, globals.css)
+├── components/     # 공통 컴포넌트 (header, nav-link, footer, theme-*)
+│   ├── home/       # 홈페이지 섹션
+│   └── ui/         # shadcn/ui 컴포넌트 (button, card, dialog, input, sonner 등)
 ├── config/         # 사이트 설정 (site.ts: 이름, 버전, 네비게이션)
 └── lib/            # 유틸리티 (cn 등)
 e2e/                # Playwright E2E 테스트
@@ -66,6 +67,8 @@ e2e/                # Playwright E2E 테스트
 ```bash
 npx shadcn@latest add <컴포넌트 이름>
 ```
+
+현재 shadcn CLI는 생성 파일의 `cn` 임포트를 `"cn"`(별개의 npm 패키지)으로 출력합니다. 추가 후 `from "cn"`을 `from "@/lib/utils"`로 바꾸고 `npm uninstall cn`을 실행하세요. 자세한 절차는 `CLAUDE.md`를 참고하세요.
 
 **테마 색상 변경**: `src/app/globals.css`의 `:root`(라이트)와 `.dark`(다크) 블록에서 CSS 변수를 수정합니다.
 
