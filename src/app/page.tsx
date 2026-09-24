@@ -83,14 +83,14 @@ export default function Home() {
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
-                Button, Card, Badge 등 접근성을 갖춘 Radix UI 기반 컴포넌트를
+                Button, Card, Badge 등 접근성을 갖춘 Base UI 기반 컴포넌트를
                 CSS 변수와 함께 사용합니다.
               </p>
             </CardContent>
             <CardFooter>
               <Badge variant="secondary" className="gap-1">
                 <Zap className="h-3 w-3" />
-                Radix UI
+                Base UI
               </Badge>
             </CardFooter>
           </Card>
@@ -112,7 +112,7 @@ export default function Home() {
             <CardFooter>
               <Badge variant="secondary" className="gap-1">
                 <Zap className="h-3 w-3" />
-                v1.17.0
+                SVG
               </Badge>
             </CardFooter>
           </Card>

@@ -16,10 +16,10 @@ npm run lint     # ESLint 검사
 
 ## 기술 스택 및 버전 주의사항
 
-- **Next.js 16.2.7** — 학습 데이터 기준과 다른 breaking changes 포함. 반드시 `node_modules/next/dist/docs/` 문서를 먼저 읽을 것 (AGENTS.md 지시).
+- **Next.js 16.3.6** — 학습 데이터 기준과 다른 breaking changes 포함. 반드시 `node_modules/next/dist/docs/` 문서를 먼저 읽을 것 (AGENTS.md 지시).
 - **React 19.2.4** — `params`가 Promise로 변경됨: `const { id } = await params` 방식으로 사용.
 - **TailwindCSS v4** — `tailwind.config.js` 없음. CSS 변수와 `@theme {}` 블록으로 `globals.css`에서 직접 관리.
-- **shadcn/ui** — `npx shadcn@latest add <component>`로 컴포넌트 추가. 스타일은 `base-nova`, 아이콘은 lucide.
+- **shadcn/ui** — `npx shadcn@latest add <component>`로 컴포넌트 추가. 스타일은 `base-nova`(Radix UI가 아닌 `@base-ui/react` 기반), 아이콘은 lucide.
 
 ## 아키텍처
 
@@ -28,11 +28,15 @@ src/
 ├── app/                   # App Router 루트
 │   ├── layout.tsx         # 전역 레이아웃: ThemeProvider, Header, Footer 래핑
 │   ├── page.tsx           # 홈페이지
+│   ├── about/page.tsx     # 소개 페이지
+│   ├── docs/page.tsx      # 문서 페이지
 │   └── globals.css        # TailwindCSS v4 진입점 + CSS 변수(라이트/다크 테마)
+├── config/
+│   └── site.ts            # siteConfig(이름·설명·버전·GitHub URL)와 NAV_LINKS의 단일 출처
 ├── components/
 │   ├── ui/                # shadcn/ui 컴포넌트 (직접 수정 가능)
-│   ├── header.tsx         # 서버 컴포넌트, NAV_LINKS 배열로 네비게이션 관리
-│   ├── footer.tsx         # 서버 컴포넌트
+│   ├── header.tsx         # 서버 컴포넌트, config/site.ts의 NAV_LINKS로 네비게이션 구성
+│   ├── footer.tsx         # 서버 컴포넌트, siteConfig.githubUrl이 비어 있으면 GitHub 링크 숨김
 │   ├── theme-provider.tsx # "use client" — next-themes 래퍼
 │   └── theme-toggle.tsx   # "use client" — 다크/라이트 전환 버튼
 └── lib/
@@ -52,4 +56,4 @@ npx shadcn@latest add <component-name>
 
 ## 빠른 내비게이션을 위한 주의사항
 
-클라이언트 측 내비게이션을 즉시 반응하게 하려면 Suspense만으로는 부족 — `unstable_instant`를 라우트에서 export해야 함. 상세 내용은 `node_modules/next/dist/docs/01-app/02-guides/instant-navigation.mdx` 참조.
+클라이언트 측 내비게이션을 즉시 반응하게 하려면 Suspense만으로는 부족 — 라우트 세그먼트에서 `export const instant = true`로 검증을 켜야 하며, `next.config.ts`에서 `cacheComponents`가 활성화되어 있어야 동작함(현재 미활성). 상세 내용은 `node_modules/next/dist/docs/01-app/02-guides/instant-navigation.md`와 `node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/02-route-segment-config/instant.md` 참조.
