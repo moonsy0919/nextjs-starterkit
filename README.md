@@ -4,15 +4,15 @@ Next.js 16, TypeScript, TailwindCSS v4, shadcn/ui 기반의 스타터킷입니�
 
 ## 기술 스택
 
-| 구분 | 사용 기술 |
-|---|---|
-| 프레임워크 | Next.js 16 (App Router, Turbopack) |
-| 언어 | TypeScript 5 |
-| 스타일링 | TailwindCSS v4 (`globals.css`의 CSS 변수와 `@theme`로 관리) |
-| UI 컴포넌트 | shadcn/ui (`base-nova` 스타일, `@base-ui/react` 기반) |
-| 아이콘 | lucide-react |
-| 테마 | next-themes (라이트/다크/시스템) |
-| 린트 | ESLint 9 + eslint-config-next |
+| 구분        | 사용 기술                                                   |
+| ----------- | ----------------------------------------------------------- |
+| 프레임워크  | Next.js 16 (App Router, Turbopack)                          |
+| 언어        | TypeScript 5                                                |
+| 스타일링    | TailwindCSS v4 (`globals.css`의 CSS 변수와 `@theme`로 관리) |
+| UI 컴포넌트 | shadcn/ui (`base-nova` 스타일, `@base-ui/react` 기반)       |
+| 아이콘      | lucide-react                                                |
+| 테마        | next-themes (라이트/다크/시스템)                            |
+| 린트        | ESLint 9 + eslint-config-next                               |
 
 ## 시작하기
 
@@ -27,12 +27,19 @@ npm run dev
 
 ## 스크립트
 
-| 명령어 | 설명 |
-|---|---|
-| `npm run dev` | 개발 서버 실행 |
-| `npm run build` | 프로덕션 빌드 |
-| `npm run start` | 빌드 결과물 실행 |
-| `npm run lint` | ESLint 검사 |
+| 명령어                            | 설명                                         |
+| --------------------------------- | -------------------------------------------- |
+| `npm run dev`                     | 개발 서버 실행                               |
+| `npm run build`                   | 프로덕션 빌드                                |
+| `npm run start`                   | 빌드 결과물 실행                             |
+| `npm run lint` / `lint:fix`       | ESLint 검사 / 자동 수정                      |
+| `npm run typecheck`               | 라우트 타입 생성 후 TypeScript 검사          |
+| `npm run format` / `format:check` | Prettier 포맷 적용 / 검사                    |
+| `npm run test` / `test:watch`     | Vitest 단위 테스트 (1회 실행 / 감시 모드)    |
+| `npm run test:e2e`                | Playwright E2E 테스트 (포트 3100 사용)       |
+| `npm run check`                   | lint, typecheck, test, build를 순서대로 실행 |
+
+E2E 테스트를 처음 실행하기 전에 `npx playwright install chromium`으로 브라우저를 설치합니다.
 
 ## 폴더 구조
 
@@ -43,7 +50,10 @@ src/
 │   └── ui/         # shadcn/ui 컴포넌트
 ├── config/         # 사이트 설정 (site.ts: 이름, 버전, 네비게이션)
 └── lib/            # 유틸리티 (cn 등)
+e2e/                # Playwright E2E 테스트
 ```
+
+단위 테스트는 대상 파일 옆에 `*.test.ts(x)`로 둡니다.
 
 ## 자주 하는 작업
 
@@ -58,6 +68,16 @@ npx shadcn@latest add <컴포넌트 이름>
 ```
 
 **테마 색상 변경**: `src/app/globals.css`의 `:root`(라이트)와 `.dark`(다크) 블록에서 CSS 변수를 수정합니다.
+
+## 환경 변수
+
+`.env.example`을 복사해 `.env.local`을 만들어 사용합니다. `.env*` 파일은 `.env.example`을 제외하고 Git에 커밋되지 않습니다.
+
+## 의존성 관리
+
+- `next`, `react`, `react-dom`, `eslint-config-next`는 정확한 버전으로 고정하고, 나머지는 `^` 범위를 사용합니다.
+- Dependabot이 매주 minor·patch 업데이트를 묶어서 PR로 올립니다.
+- CI(`.github/workflows/ci.yml`)는 lint, 포맷, typecheck, 단위 테스트, 빌드, E2E를 검사합니다.
 
 ## 참고
 

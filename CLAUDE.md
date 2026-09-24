@@ -7,12 +7,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## 주요 명령어
 
 ```bash
-npm run dev      # 개발 서버 (http://localhost:3000)
-npm run build    # 프로덕션 빌드
-npm run lint     # ESLint 검사
+npm run dev         # 개발 서버 (http://localhost:3000)
+npm run build       # 프로덕션 빌드
+npm run lint        # ESLint 검사 (lint:fix로 자동 수정)
+npm run typecheck   # 라우트 타입 생성 + tsc --noEmit
+npm run format      # Prettier 적용 (format:check로 검사)
+npm run test        # Vitest 단위 테스트 1회 실행 (test:watch는 감시 모드)
+npm run test:e2e    # Playwright E2E (포트 3100, 최초 1회 npx playwright install chromium)
+npm run check       # lint + typecheck + test + build
 ```
 
-테스트 설정 없음 — 테스트 추가 시 패키지 먼저 설치 필요.
+- 단위 테스트는 `src/**/*.test.ts(x)`, E2E 테스트는 `e2e/`에 둔다. async Server Component는 Vitest가 지원하지 않으므로 E2E로 검증한다.
+- `src/components/ui/`(shadcn 생성 코드)는 Prettier 대상에서 제외되어 있다.
+- `AGENTS.md`는 `next dev`가 자동으로 갱신하는 블록이 있으므로 직접 편집하거나 포맷하지 않는다.
 
 ## 기술 스택 및 버전 주의사항
 
@@ -50,6 +57,7 @@ src/
 테마 색상은 `globals.css`의 `:root` / `.dark` 블록에서 CSS 변수로 정의. Tailwind 클래스(`bg-primary`, `text-muted-foreground` 등)는 이 변수를 참조함. `@theme inline {}` 블록에서 Tailwind ↔ CSS 변수 매핑.
 
 새 shadcn 컴포넌트 추가:
+
 ```bash
 npx shadcn@latest add <component-name>
 ```
