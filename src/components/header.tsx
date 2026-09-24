@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { NavLink } from "@/components/nav-link";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { NAV_LINKS, siteConfig } from "@/config/site";
 
@@ -7,24 +8,20 @@ export function Header() {
   return (
     <header className="border-b border-border bg-background">
       <div className="container mx-auto flex h-14 max-w-5xl items-center justify-between px-4">
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4 sm:gap-6">
           <Link href="/" className="font-semibold text-foreground">
             {siteConfig.name}
           </Link>
-          <nav className="flex items-center gap-4">
+          <nav aria-label="주요 메뉴" className="flex items-center gap-4">
             {NAV_LINKS.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-              >
+              <NavLink key={href} href={href}>
                 {label}
-              </Link>
+              </NavLink>
             ))}
           </nav>
         </div>
         <div className="flex items-center gap-3">
-          <span className="text-sm text-muted-foreground">
+          <span className="hidden text-sm text-muted-foreground sm:inline">
             {siteConfig.version}
           </span>
           <ThemeToggle />

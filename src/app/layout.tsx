@@ -37,6 +37,7 @@ export const metadata: Metadata = {
   },
 };
 
+/** 모든 페이지를 감싸는 루트 레이아웃 (폰트, 테마, 헤더, 푸터) */
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -55,8 +56,16 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-background focus:px-3 focus:py-2 focus:text-sm focus:shadow"
+          >
+            본문으로 바로가기
+          </a>
           <Header />
-          <main className="flex-1">{children}</main>
+          <main id="main-content" className="flex-1">
+            {children}
+          </main>
           <Footer />
         </ThemeProvider>
       </body>
