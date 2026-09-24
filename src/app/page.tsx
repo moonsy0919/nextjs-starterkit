@@ -22,7 +22,6 @@ export default function Home() {
   return (
     <div className="bg-background py-12">
       <div className="container mx-auto max-w-5xl px-4">
-
         {/* 헤더 섹션 */}
         <section className="mb-12 text-center">
           <div className="mb-4 flex items-center justify-center gap-2">
@@ -51,7 +50,9 @@ export default function Home() {
                 <Sparkles className="h-8 w-8 text-primary" />
               </div>
               <CardTitle>TailwindCSS v4</CardTitle>
-              <CardDescription>CSS 기반 설정, tailwind.config 없음</CardDescription>
+              <CardDescription>
+                CSS 기반 설정, tailwind.config 없음
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
@@ -83,8 +84,8 @@ export default function Home() {
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
-                Button, Card, Badge 등 접근성을 갖춘 Base UI 기반 컴포넌트를
-                CSS 변수와 함께 사용합니다.
+                Button, Card, Badge 등 접근성을 갖춘 Base UI 기반 컴포넌트를 CSS
+                변수와 함께 사용합니다.
               </p>
             </CardContent>
             <CardFooter>
@@ -123,7 +124,9 @@ export default function Home() {
           <Card>
             <CardHeader>
               <CardTitle>Button 컴포넌트 데모</CardTitle>
-              <CardDescription>shadcn/ui Button의 다양한 variant</CardDescription>
+              <CardDescription>
+                shadcn/ui Button의 다양한 variant
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex flex-wrap gap-3">
@@ -156,30 +159,46 @@ export default function Home() {
             <CardHeader>
               <CardTitle>TailwindCSS v4 스타일링 예시</CardTitle>
               <CardDescription>
-                CSS 변수와 @theme 블록 기반 동적 스타일 — tailwind.config 파일 없음
+                CSS 변수와 @theme 블록 기반 동적 스타일 — tailwind.config 파일
+                없음
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="rounded-lg border border-border bg-card p-4">
-                  <h3 className="mb-3 font-semibold text-card-foreground">CSS 변수 색상 팔레트</h3>
+                  <h3 className="mb-3 font-semibold text-card-foreground">
+                    CSS 변수 색상 팔레트
+                  </h3>
                   <div className="flex flex-wrap gap-2">
                     {[
                       { label: "primary", cls: "bg-primary" },
-                      { label: "secondary", cls: "bg-secondary border border-border" },
+                      {
+                        label: "secondary",
+                        cls: "bg-secondary border border-border",
+                      },
                       { label: "muted", cls: "bg-muted border border-border" },
-                      { label: "accent", cls: "bg-accent border border-border" },
+                      {
+                        label: "accent",
+                        cls: "bg-accent border border-border",
+                      },
                       { label: "destructive", cls: "bg-destructive" },
                     ].map(({ label, cls }) => (
-                      <div key={label} className="flex flex-col items-center gap-1">
+                      <div
+                        key={label}
+                        className="flex flex-col items-center gap-1"
+                      >
                         <div className={`h-8 w-8 rounded ${cls}`} />
-                        <span className="text-xs text-muted-foreground">{label}</span>
+                        <span className="text-xs text-muted-foreground">
+                          {label}
+                        </span>
                       </div>
                     ))}
                   </div>
                 </div>
                 <div className="rounded-lg border border-border bg-card p-4">
-                  <h3 className="mb-3 font-semibold text-card-foreground">lucide-react 아이콘</h3>
+                  <h3 className="mb-3 font-semibold text-card-foreground">
+                    lucide-react 아이콘
+                  </h3>
                   <div className="flex items-center gap-4 text-muted-foreground">
                     <Rocket className="h-6 w-6" />
                     <Sparkles className="h-6 w-6" />
@@ -221,7 +240,6 @@ export default function Home() {
             </CardFooter>
           </Card>
         </section>
-
       </div>
     </div>
   );

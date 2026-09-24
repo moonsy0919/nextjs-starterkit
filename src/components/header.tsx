@@ -24,7 +24,9 @@ export function Header() {
           </nav>
         </div>
         <div className="flex items-center gap-3">
-          <span className="text-sm text-muted-foreground">{siteConfig.version}</span>
+          <span className="text-sm text-muted-foreground">
+            {siteConfig.version}
+          </span>
           <ThemeToggle />
         </div>
       </div>
